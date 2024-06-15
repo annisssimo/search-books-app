@@ -1,0 +1,11 @@
+header {
+  background-image: url(/header-background.png);
+  background-size: cover;
+  background-position: center;
+  height: 240px;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
