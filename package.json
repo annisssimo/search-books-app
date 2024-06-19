@@ -1,6 +1,7 @@
 {
   "name": "search-books-app",
   "private": true,
+  "homepage": "https://annisssimo.github.io/search-books-app",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
