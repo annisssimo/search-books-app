@@ -22,6 +22,7 @@ function App() {
   const [searchResults, setSearchResults] = useState<Book[]>([]);
   const [startIndex, setStartIndex] = useState<number>(0);
   const [totalItems, setTotalItems] = useState<number>(0);
+  const [noBooksFound, setNoBooksFound] = useState<boolean>(false);
   const maxResults = 30;
 
   const handleInitialSearch = async (): Promise<void> => {
@@ -49,8 +50,10 @@ function App() {
         console.log('Books found:', data.items);
         setSearchResults((prevResults) => [...prevResults, ...data.items]);
         setTotalItems(data.totalItems);
+        setNoBooksFound(false);
       } else {
         console.log('No books found');
+        setNoBooksFound(true);
         setSearchResults([]);
         setTotalItems(0);
       }
@@ -78,7 +81,10 @@ function App() {
         setQuery={setQuery}
         onSearch={handleInitialSearch}
       />
-      <div className="total-items">Found {totalItems} results</div>
+      {totalItems !== 0 && (
+        <div className="total-items">Found {totalItems} results</div>
+      )}
+      {noBooksFound && <div className="total-items">No books found</div>}
       <div className="search-results">
         {searchResults.map((book) => (
           <BookCard
