@@ -8,7 +8,7 @@ interface Book {
   volumeInfo: {
     title: string;
     authors: string[];
-    categories: string;
+    categories?: string[];
     imageLinks: {
       thumbnail: string;
     };
@@ -64,7 +64,12 @@ function App() {
           <BookCard
             key={book.id}
             image={book.volumeInfo.imageLinks?.thumbnail}
-            category={book.volumeInfo.categories[0]}
+            category={
+              book.volumeInfo.categories &&
+              book.volumeInfo.categories.length > 0
+                ? book.volumeInfo.categories[0]
+                : 'No category'
+            }
             title={book.volumeInfo.title}
             authors={book.volumeInfo.authors}
           />
