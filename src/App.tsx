@@ -20,13 +20,20 @@ function App() {
   const [category, setCategory] = useState<string>('all');
   const [sort, setSort] = useState<string>('relevance');
   const [searchResults, setSearchResults] = useState<Book[]>([]);
+  const [startIndex, setStartIndex] = useState<number>(0);
+  const maxResults = 30;
 
-  const handleSearch = async (): Promise<void> => {
+  const handleInitialSearch = async (): Promise<void> => {
+    setStartIndex(0); // Сбрасываем startIndex перед начальным поиском
+    handleSearch(0); // Начальный поиск всегда начинается с 0
+  };
+
+  const handleSearch = async (startIndex: number): Promise<void> => {
     try {
       console.log('Search term:', query);
       const apiKey = 'AIzaSyCHN4uhbCS9XCX1n3m-uPb8LYIAy5cCES0';
       const categoryFilter = category !== 'all' ? `+subject:${category}` : '';
-      const url = `https://www.googleapis.com/books/v1/volumes?q=${query}${categoryFilter}&orderBy=${sort}&key=${apiKey}`;
+      const url = `https://www.googleapis.com/books/v1/volumes?q=${query}${categoryFilter}&orderBy=${sort}&startIndex=${startIndex}&maxResults=${maxResults}&key=${apiKey}`;
 
       const response = await fetch(url);
 
@@ -38,7 +45,7 @@ function App() {
 
       if (data.totalItems > 0) {
         console.log('Books found:', data.items);
-        setSearchResults(data.items);
+        setSearchResults([...searchResults, ...data.items]);
       } else {
         console.log('No books found');
         setSearchResults([]);
@@ -46,6 +53,12 @@ function App() {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
+  };
+
+  const loadMoreBooks = () => {
+    const newStartIndex = startIndex + maxResults;
+    setStartIndex(newStartIndex);
+    handleSearch(newStartIndex);
   };
 
   return (
@@ -57,7 +70,7 @@ function App() {
         setSort={setSort}
         query={query}
         setQuery={setQuery}
-        onSearch={handleSearch}
+        onSearch={handleInitialSearch}
       />
       <div className="search-results">
         {searchResults.map((book) => (
@@ -74,6 +87,13 @@ function App() {
             authors={book.volumeInfo.authors}
           />
         ))}
+      </div>
+      <div className="button-container">
+        {searchResults.length > 0 && (
+          <button className="load-button" onClick={loadMoreBooks}>
+            Load more
+          </button>
+        )}
       </div>
     </div>
   );
