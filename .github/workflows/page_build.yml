@@ -2,8 +2,8 @@ name: React Build and Deploy
 
 on:
   push:
-    branches: [ "main" ]
-    
+    branches: ['main']
+
 env:
   CI: false
 
@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-    
+
     steps:
       - uses: actions/checkout@v3
 
@@ -34,10 +34,10 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: 'dist/'
+          path: '/'
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-        env:  
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
