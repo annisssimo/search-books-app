@@ -4,3 +4,23 @@
   justify-content: center;
   padding: 16px;
 }
+
+.button-container {
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.load-button {
+  padding: 10px 30px;
+  border: none;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.402);
+  background-color: #333;
+  color: white;
+}
+
+.total-items {
+  text-align: center;
+  font-size: 18px;
+  margin: 20px 0px 0px;
+}
