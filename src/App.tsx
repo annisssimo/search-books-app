@@ -21,6 +21,7 @@ function App() {
   const [sort, setSort] = useState<string>('relevance');
   const [searchResults, setSearchResults] = useState<Book[]>([]);
   const [startIndex, setStartIndex] = useState<number>(0);
+  const [totalItems, setTotalItems] = useState<number>(0);
   const maxResults = 30;
 
   const handleInitialSearch = async (): Promise<void> => {
@@ -46,10 +47,12 @@ function App() {
 
       if (data.totalItems > 0) {
         console.log('Books found:', data.items);
-        setSearchResults([...searchResults, ...data.items]);
+        setSearchResults((prevResults) => [...prevResults, ...data.items]);
+        setTotalItems(data.totalItems);
       } else {
         console.log('No books found');
         setSearchResults([]);
+        setTotalItems(0);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -57,9 +60,11 @@ function App() {
   };
 
   const loadMoreBooks = () => {
-    const newStartIndex = startIndex + maxResults;
-    setStartIndex(newStartIndex);
-    handleSearch(newStartIndex);
+    if (searchResults.length < totalItems) {
+      const newStartIndex = startIndex + maxResults;
+      setStartIndex(newStartIndex);
+      handleSearch(newStartIndex);
+    }
   };
 
   return (
@@ -73,6 +78,7 @@ function App() {
         setQuery={setQuery}
         onSearch={handleInitialSearch}
       />
+      <div className="total-items">Found {totalItems} results</div>
       <div className="search-results">
         {searchResults.map((book) => (
           <BookCard
