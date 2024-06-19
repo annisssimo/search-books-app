@@ -7,7 +7,7 @@ interface Book {
   id: string;
   volumeInfo: {
     title: string;
-    authors: string[];
+    authors?: string[];
     categories?: string[];
     imageLinks: {
       thumbnail: string;
@@ -25,6 +25,7 @@ function App() {
 
   const handleInitialSearch = async (): Promise<void> => {
     setStartIndex(0); // Сбрасываем startIndex перед начальным поиском
+    setSearchResults([]);
     handleSearch(0); // Начальный поиск всегда начинается с 0
   };
 
@@ -81,10 +82,14 @@ function App() {
               book.volumeInfo.categories &&
               book.volumeInfo.categories.length > 0
                 ? book.volumeInfo.categories[0]
-                : 'No category'
+                : ''
             }
             title={book.volumeInfo.title}
-            authors={book.volumeInfo.authors}
+            authors={
+              book.volumeInfo.authors && book.volumeInfo.authors.length > 0
+                ? book.volumeInfo.authors
+                : []
+            }
           />
         ))}
       </div>
