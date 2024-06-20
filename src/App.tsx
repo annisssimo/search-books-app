@@ -63,11 +63,9 @@ function App() {
   };
 
   const loadMoreBooks = () => {
-    if (searchResults.length < totalItems) {
-      const newStartIndex = startIndex + maxResults;
-      setStartIndex(newStartIndex);
-      handleSearch(newStartIndex);
-    }
+    const newStartIndex = startIndex + maxResults;
+    setStartIndex(newStartIndex);
+    handleSearch(newStartIndex);
   };
 
   return (
@@ -106,11 +104,12 @@ function App() {
         ))}
       </div>
       <div className="button-container">
-        {searchResults.length > 0 && (
-          <button className="load-button" onClick={loadMoreBooks}>
-            Load more
-          </button>
-        )}
+        {searchResults.length > 0 &&
+          searchResults.length % maxResults === 0 && (
+            <button className="load-button" onClick={loadMoreBooks}>
+              Load more
+            </button>
+          )}
       </div>
     </div>
   );
