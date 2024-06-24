@@ -1,12 +1,6 @@
 import React from 'react';
 import './DropDown.css';
-
-interface DropDownProps {
-  category: string;
-  setCategory: (category: string) => void;
-  sort: string;
-  setSort: (sort: string) => void;
-}
+import { DropDownProps } from './types';
 
 const filters: string[] = [
   'all',

@@ -1,12 +1,7 @@
 import React, { KeyboardEvent, ChangeEvent } from 'react';
 import './SearchBar.css';
 import { FaSearch } from 'react-icons/fa';
-
-interface SearchBarProps {
-  query: string;
-  setQuery: (query: string) => void;
-  onSearch: () => void;
-}
+import { SearchBarProps } from './types';
 
 const SearchBar: React.FC<SearchBarProps> = ({ query, setQuery, onSearch }) => {
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>): void => {

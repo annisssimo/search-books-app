@@ -2,16 +2,7 @@ import React from 'react';
 import './Header.css';
 import DropDown from '../DropDown/DropDown';
 import SearchBar from '../SearchBar/SearchBar';
-
-interface HeaderProps {
-  category: string;
-  setCategory: (category: string) => void;
-  sort: string;
-  setSort: (sort: string) => void;
-  query: string;
-  setQuery: (query: string) => void;
-  onSearch: () => void;
-}
+import { HeaderProps } from './types';
 
 const Header: React.FC<HeaderProps> = ({
   category,
