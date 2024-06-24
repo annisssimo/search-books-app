@@ -1,8 +1,9 @@
 import React from 'react';
-import Header from '../Header/Header';
-import BookCard from '../BookCard/BookCard';
-import useBookSearch from '../../hooks/useBookSearch';
+
 import { MAX_RESULTS } from '../../constants/constants';
+import useBookSearch from '../../hooks/useBookSearch';
+import BookCard from '../BookCard/BookCard';
+import Header from '../Header/Header';
 
 const BookSearch: React.FC = () => {
   const {

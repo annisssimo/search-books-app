@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { fetchBooks } from '../services/bookService';
 
 interface Book {
@@ -32,13 +33,7 @@ const useBookSearch = () => {
 
   const handleSearch = async (startIndex: number): Promise<void> => {
     try {
-      const data = await fetchBooks(
-        query,
-        category,
-        sort,
-        startIndex,
-        maxResults
-      );
+      const data = await fetchBooks(query, category, sort, startIndex, maxResults);
 
       if (data.totalItems > 0) {
         setSearchResults((prevResults) => [...prevResults, ...data.items]);
@@ -51,6 +46,7 @@ const useBookSearch = () => {
       }
     } catch (error) {
       console.error('Error fetching data:', error);
+      //TODO: Отобразить ошибку на UI
     }
   };
 

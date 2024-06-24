@@ -1,12 +1,8 @@
 import './BookCard.css';
+
 import { BookCardProps } from './types';
 
-const BookCard: React.FC<BookCardProps> = ({
-  image,
-  category,
-  title,
-  authors,
-}) => {
+const BookCard: React.FC<BookCardProps> = ({ image, category, title, authors }) => {
   return (
     <div className="book-card">
       <img className="book-image" src={image} alt={`${title} cover`} />
