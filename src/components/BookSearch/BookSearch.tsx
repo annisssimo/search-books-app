@@ -30,9 +30,7 @@ const BookSearch: React.FC = () => {
         setQuery={setQuery}
         onSearch={handleInitialSearch}
       />
-      {totalItems !== 0 && (
-        <div className="total-items">Found {totalItems} results</div>
-      )}
+      {totalItems !== 0 && <div className="total-items">Found {totalItems} results</div>}
       {noBooksFound && <div className="total-items">No books found</div>}
       <div className="search-results">
         {searchResults.map((book) => (
@@ -40,8 +38,7 @@ const BookSearch: React.FC = () => {
             key={book.id}
             image={book.volumeInfo.imageLinks?.thumbnail}
             category={
-              book.volumeInfo.categories &&
-              book.volumeInfo.categories.length > 0
+              book.volumeInfo.categories && book.volumeInfo.categories.length > 0
                 ? book.volumeInfo.categories[0]
                 : ''
             }
@@ -55,12 +52,11 @@ const BookSearch: React.FC = () => {
         ))}
       </div>
       <div className="button-container">
-        {searchResults.length > 0 &&
-          searchResults.length % MAX_RESULTS === 0 && (
-            <button className="load-button" onClick={loadMoreBooks}>
-              Load more
-            </button>
-          )}
+        {searchResults.length > 0 && searchResults.length % MAX_RESULTS === 0 && (
+          <button className="load-button" onClick={loadMoreBooks}>
+            Load more
+          </button>
+        )}
       </div>
     </div>
   );
