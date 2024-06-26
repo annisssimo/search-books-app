@@ -1,20 +1,8 @@
 import { useState } from 'react';
 
+import { MAX_RESULTS } from '../constants/constants';
 import { fetchBooks } from '../services/bookService';
-
-interface Book {
-  id: string;
-  volumeInfo: {
-    title: string;
-    authors?: string[];
-    categories?: string[];
-    imageLinks: {
-      thumbnail: string;
-    };
-  };
-}
-
-const maxResults = 30;
+import { Book } from '../types/book';
 
 const useBookSearch = () => {
   const [query, setQuery] = useState<string>('');
@@ -33,7 +21,7 @@ const useBookSearch = () => {
 
   const handleSearch = async (startIndex: number): Promise<void> => {
     try {
-      const data = await fetchBooks(query, category, sort, startIndex, maxResults);
+      const data = await fetchBooks(query, category, sort, startIndex, MAX_RESULTS);
 
       if (data.totalItems > 0) {
         setSearchResults((prevResults) => [...prevResults, ...data.items]);
@@ -51,7 +39,7 @@ const useBookSearch = () => {
   };
 
   const loadMoreBooks = () => {
-    const newStartIndex = startIndex + maxResults;
+    const newStartIndex = startIndex + MAX_RESULTS;
     setStartIndex(newStartIndex);
     handleSearch(newStartIndex);
   };

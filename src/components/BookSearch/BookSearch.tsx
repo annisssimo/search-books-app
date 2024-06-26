@@ -1,42 +1,21 @@
 import React from 'react';
 
 import { MAX_RESULTS } from '../../constants/constants';
-import useBookSearch from '../../hooks/useBookSearch';
+import { useSearch } from '../../context/SearchContext';
 import BookCard from '../BookCard/BookCard';
-import Header from '../Header/Header';
 
 const BookSearch: React.FC = () => {
-  const {
-    query,
-    setQuery,
-    category,
-    setCategory,
-    sort,
-    setSort,
-    searchResults,
-    totalItems,
-    noBooksFound,
-    handleInitialSearch,
-    loadMoreBooks,
-  } = useBookSearch();
+  const { searchResults, totalItems, noBooksFound, loadMoreBooks } = useSearch();
 
   return (
     <div className="book-search">
-      <Header
-        category={category}
-        setCategory={setCategory}
-        sort={sort}
-        setSort={setSort}
-        query={query}
-        setQuery={setQuery}
-        onSearch={handleInitialSearch}
-      />
       {totalItems !== 0 && <div className="total-items">Found {totalItems} results</div>}
       {noBooksFound && <div className="total-items">No books found</div>}
       <div className="search-results">
         {searchResults.map((book) => (
           <BookCard
             key={book.id}
+            id={book.id}
             image={book.volumeInfo.imageLinks?.thumbnail}
             category={
               book.volumeInfo.categories && book.volumeInfo.categories.length > 0
