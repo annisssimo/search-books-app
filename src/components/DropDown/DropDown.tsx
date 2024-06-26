@@ -1,39 +1,18 @@
-import React from 'react';
 import './DropDown.css';
 
-interface DropDownProps {
-  category: string;
-  setCategory: (category: string) => void;
-  sort: string;
-  setSort: (sort: string) => void;
-}
+import React from 'react';
 
-const filters: string[] = [
-  'all',
-  'art',
-  'biography',
-  'computers',
-  'history',
-  'medical',
-  'poetry',
-];
+import { DropDownProps } from './types';
+
+const filters: string[] = ['all', 'art', 'biography', 'computers', 'history', 'medical', 'poetry'];
 const sorts: string[] = ['relevance', 'newest'];
 
-const DropDown: React.FC<DropDownProps> = ({
-  category,
-  setCategory,
-  sort,
-  setSort,
-}) => {
-  const handleCategoryChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ): void => {
+const DropDown: React.FC<DropDownProps> = ({ category, setCategory, sort, setSort }) => {
+  const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
     setCategory(event.target.value);
   };
 
-  const handleSortChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ): void => {
+  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
     setSort(event.target.value);
   };
 

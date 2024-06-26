@@ -10,14 +10,30 @@ body {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: black;
   text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+.loading {
+  text-align: center;
+  margin: 80px;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 15px;
+  margin: 20px 80px;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  text-align: center;
 }
