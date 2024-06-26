@@ -29,7 +29,7 @@ const BookDetails: React.FC = () => {
   };
 
   return (
-    <div className="book-details">
+    <div className="book-details-page">
       <div className="book-details-image-container">
         <img
           className="book-details-image"

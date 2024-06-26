@@ -1,4 +1,4 @@
-.book-details {
+.book-details-page {
   display: flex;
   padding: 80px 120px;
   gap: 160px;
@@ -30,10 +30,6 @@
 .book-details-description {
   border: 1px solid gray;
   padding: 20px;
-}
-
-.book-details {
-  display: flex;
 }
 
 .book-details-image-container {

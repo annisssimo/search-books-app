@@ -5,23 +5,12 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 16px;
   background-color: #eaeaea;
-  display: flex;
-  flex-direction: column;
 }
 
 .book-image {
   height: 200px;
   margin: 20px;
   align-self: center;
-}
-
-.book-title {
-  font-size: 1rem;
-}
-
-.book-description {
-  font-size: 0.9em;
-  color: #777;
 }
 
 p.category {
