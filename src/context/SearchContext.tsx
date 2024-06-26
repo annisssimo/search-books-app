@@ -33,7 +33,6 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [totalItems, setTotalItems] = useState<number>(0);
   const [noBooksFound, setNoBooksFound] = useState<boolean>(false);
 
-  // Функции для выполнения поисковых запросов
   const handleInitialSearch = async (): Promise<void> => {
     setStartIndex(0);
     setSearchResults([]);
@@ -65,7 +64,6 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     handleSearch(newStartIndex);
   };
 
-  // Возвращаем провайдер контекста с текущими значениями состояний и функций
   return (
     <SearchContext.Provider
       value={{
@@ -87,7 +85,6 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   );
 };
 
-// Хук для использования контекста в компонентах
 export const useSearch = (): SearchContextProps => {
   const context = useContext(SearchContext);
   if (context === undefined) {

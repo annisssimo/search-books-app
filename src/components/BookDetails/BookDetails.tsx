@@ -8,9 +8,9 @@ const BookDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { book, loading, error } = useBookDetails(id);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
-  if (!book) return <div>No book details available</div>;
+  if (loading) return <div className="loading">Loading...</div>;
+  if (error) return <div className="error-message">{error}</div>;
+  if (!book) return <div className="error-message">No book details available</div>;
 
   const getImageLink = () => {
     const { thumbnail, smallThumbnail } = book.volumeInfo.imageLinks;
