@@ -18,16 +18,33 @@ const BookDetails: React.FC = () => {
     return thumbnail || smallThumbnail;
   };
 
+  // Function to render description as plain text
+  const renderDescription = () => {
+    if (book.volumeInfo.description) {
+      const tempElement = document.createElement('div');
+      tempElement.innerHTML = book.volumeInfo.description;
+      return tempElement.innerText;
+    }
+    return 'No description available';
+  };
+
   return (
     <div className="book-details">
-      <img className="book-image" src={getImageLink()} alt={book.volumeInfo.title} />
+      <div className="book-details-image-container">
+        <img
+          className="book-details-image"
+          src={getImageLink()}
+          alt={book.volumeInfo.title}
+          onLoad={() => console.log('Image loaded')}
+        />
+      </div>
       <div className="book-info">
         {book.volumeInfo.categories && (
-          <div className="book-categories">{book.volumeInfo.categories.join(', ')}</div>
+          <div className="book-details-categories">{book.volumeInfo.categories.join(', ')}</div>
         )}
-        <div className="book-title">{book.volumeInfo.title}</div>
-        <div className="book-authors">{book.volumeInfo.authors?.join(', ')}</div>
-        <div className="book-description">{book.volumeInfo.description}</div>
+        <div className="book-details-title">{book.volumeInfo.title}</div>
+        <div className="book-details-authors">{book.volumeInfo.authors?.join(', ')}</div>
+        <div className="book-details-description">{renderDescription()}</div>
       </div>
     </div>
   );
