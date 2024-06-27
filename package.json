@@ -43,6 +43,7 @@
     "prettier": "^3.3.2",
     "typescript": "^5.4.5",
     "vite": "^5.2.0",
+    "vite-plugin-env-compatible": "^2.0.1",
     "vite-plugin-gh-pages": "^0.4.1"
   },
   "lint-staged": {
