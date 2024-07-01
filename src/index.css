@@ -22,8 +22,11 @@ h1 {
 }
 
 .loading {
-  text-align: center;
   margin: 80px;
+}
+
+.loading-more {
+  margin: -20px 0 40px 0;
 }
 
 .error-message {

@@ -3,12 +3,20 @@ import React from 'react';
 import { MAX_RESULTS } from '../../constants/constants';
 import { useSearch } from '../../context/SearchContext';
 import BookCard from '../BookCard';
+import Spinner from '../Spinner';
 
 const BookSearch: React.FC = () => {
-  const { searchResults, totalItems, noBooksFound, loadMoreBooks } = useSearch();
+  const { searchResults, totalItems, noBooksFound, loadMoreBooks, loading, loadingMore, error } =
+    useSearch();
 
   return (
     <div className="book-search">
+      {loading && (
+        <div className="loading">
+          <Spinner />
+        </div>
+      )}
+      {error && <div className="error-message">{error}</div>}
       {totalItems !== 0 && <div className="total-items">Found {totalItems} results</div>}
       {noBooksFound && <div className="total-items">No books found</div>}
       <div className="search-results">
@@ -32,12 +40,17 @@ const BookSearch: React.FC = () => {
         ))}
       </div>
       <div className="button-container">
-        {searchResults.length > 0 && searchResults.length % MAX_RESULTS === 0 && (
+        {searchResults.length > 0 && searchResults.length % MAX_RESULTS === 0 && !loadingMore && (
           <button className="load-button" onClick={loadMoreBooks}>
             Load more
           </button>
         )}
       </div>
+      {loadingMore && (
+        <div className="loading-more">
+          <Spinner />
+        </div>
+      )}
     </div>
   );
 };
