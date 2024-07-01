@@ -2,7 +2,7 @@ import React from 'react';
 
 import { MAX_RESULTS } from '../../constants/constants';
 import { useSearch } from '../../context/SearchContext';
-import BookCard from '../BookCard/BookCard';
+import BookCard from '../BookCard';
 
 const BookSearch: React.FC = () => {
   const { searchResults, totalItems, noBooksFound, loadMoreBooks } = useSearch();

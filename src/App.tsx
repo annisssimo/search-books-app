@@ -2,9 +2,9 @@ import './App.css';
 
 import { Route, Routes } from 'react-router-dom';
 
-import BookDetails from './components/BookDetails/BookDetails';
-import BookSearch from './components/BookSearch/BookSearch';
-import Header from './components/Header/Header';
+import BookDetails from './components/BookDetails';
+import BookSearch from './components/BookSearch';
+import Header from './components/Header';
 import { SearchProvider } from './context/SearchContext';
 
 function App() {

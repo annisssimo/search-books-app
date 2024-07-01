@@ -1,30 +1,14 @@
 import React, { createContext, useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { MAX_RESULTS } from '../constants/constants';
 import { fetchBooks } from '../services/bookService';
 import { Book } from '../types/book';
+import SearchContextProps from '../types/searchContextProps';
 
-// Определение интерфейса контекста
-interface SearchContextProps {
-  query: string;
-  setQuery: (query: string) => void;
-  category: string;
-  setCategory: (category: string) => void;
-  sort: string;
-  setSort: (sort: string) => void;
-  searchResults: Book[];
-  totalItems: number;
-  noBooksFound: boolean;
-  handleInitialSearch: () => Promise<void>;
-  loadMoreBooks: () => void;
-}
-
-// Создание контекста
 const SearchContext = createContext<SearchContextProps | undefined>(undefined);
 
-// Провайдер контекста, который обеспечивает доступ к данным через всё дерево компонентов
 export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Состояния и функции для управления поисковыми данными
   const [query, setQuery] = useState<string>('');
   const [category, setCategory] = useState<string>('all');
   const [sort, setSort] = useState<string>('relevance');
@@ -32,10 +16,12 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [startIndex, setStartIndex] = useState<number>(0);
   const [totalItems, setTotalItems] = useState<number>(0);
   const [noBooksFound, setNoBooksFound] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleInitialSearch = async (): Promise<void> => {
     setStartIndex(0);
     setSearchResults([]);
+    navigate('/');
     handleSearch(0);
   };
 

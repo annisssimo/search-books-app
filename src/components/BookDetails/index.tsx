@@ -1,4 +1,4 @@
-import './BookDetails.css';
+import './index.css';
 
 import { useParams } from 'react-router-dom';
 
@@ -18,7 +18,6 @@ const BookDetails: React.FC = () => {
     return thumbnail || smallThumbnail;
   };
 
-  // Function to render description as plain text
   const renderDescription = () => {
     if (book.volumeInfo.description) {
       const tempElement = document.createElement('div');

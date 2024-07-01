@@ -34,7 +34,7 @@ const useBookSearch = () => {
       }
     } catch (error) {
       console.error('Error fetching data:', error);
-      //TODO: Отобразить ошибку на UI
+      //TODO:  Display error on UI
     }
   };
 
