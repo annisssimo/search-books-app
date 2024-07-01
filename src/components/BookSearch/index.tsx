@@ -17,7 +17,9 @@ const BookSearch: React.FC = () => {
         </div>
       )}
       {error && <div className="error-message">{error}</div>}
-      {totalItems !== 0 && <div className="total-items">Found {totalItems} results</div>}
+      {totalItems !== 0 && !loading && !error && (
+        <div className="total-items">Found {totalItems} results</div>
+      )}
       {noBooksFound && <div className="total-items">No books found</div>}
       <div className="search-results">
         {searchResults.map((book) => (

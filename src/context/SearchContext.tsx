@@ -31,6 +31,8 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   };
 
   const handleSearch = async (startIndex: number): Promise<void> => {
+    setError(null);
+
     try {
       const data = await fetchBooks(query, category, sort, startIndex, MAX_RESULTS);
       if (data.totalItems > 0) {

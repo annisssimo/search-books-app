@@ -28,16 +28,10 @@ const BookDetails: React.FC = () => {
     <div className="book-details-page">
       {loading && <Spinner />}
       {error && <div className="error-message">{error}</div>}
-      {!loading && !book && <div className="error-message">No book details available</div>}
       {book && (
         <>
           <div className="book-details-image-container">
-            <img
-              className="book-details-image"
-              src={getImageLink()}
-              alt={book.volumeInfo.title}
-              onLoad={() => console.log('Image loaded')}
-            />
+            <img className="book-details-image" src={getImageLink()} alt={book.volumeInfo.title} />
           </div>
           <div className="book-info">
             {book.volumeInfo.categories && (
