@@ -1,15 +1,15 @@
 .dropdown {
   display: flex;
-  gap: 20px;
   align-items: center;
+  gap: 20px;
   font-size: 1.25rem;
 }
 
 #categories-select,
 #sort-select {
-  font-family: inherit;
   margin-left: 10px;
   padding: 5px 10px;
-  outline: none;
   border: none;
+  outline: none;
+  font-family: inherit;
 }
