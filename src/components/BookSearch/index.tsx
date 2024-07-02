@@ -4,11 +4,24 @@ import { MAX_RESULTS } from '../../constants/constants';
 import { useSearch } from '../../context/SearchContext';
 import { Book } from '../../types/book';
 import BookCard from '../BookCard';
+import ErrorModal from '../ErrorModal';
 import Spinner from '../Spinner';
 
 const BookSearch: React.FC = () => {
-  const { searchResults, totalItems, noBooksFound, loadMoreBooks, loading, loadingMore, error } =
-    useSearch();
+  const {
+    searchResults,
+    totalItems,
+    noBooksFound,
+    loadMoreBooks,
+    loading,
+    loadingMore,
+    error,
+    setError,
+  } = useSearch();
+
+  const handleCloseError = () => {
+    setError(null);
+  };
 
   const getUniqueBooks = (books: Book[]): Book[] => {
     const uniqueBooks: Book[] = [];
@@ -33,7 +46,7 @@ const BookSearch: React.FC = () => {
           <Spinner />
         </div>
       )}
-      {error && <div className="error-message">{error}</div>}
+      {error && <ErrorModal message={error} onClose={handleCloseError} />}
       {totalItems !== 0 && !loading && !error && (
         <div className="total-items">Found {totalItems} results</div>
       )}

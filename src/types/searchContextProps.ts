@@ -15,4 +15,5 @@ export default interface SearchContextProps {
   loading: boolean;
   loadingMore: boolean;
   error: string | null;
+  setError: (error: string | null) => void;
 }

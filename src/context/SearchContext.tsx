@@ -31,6 +31,13 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   };
 
   const handleSearch = async (startIndex: number): Promise<void> => {
+    if (!query.trim()) {
+      setSearchResults([]);
+      setTotalItems(0);
+      setNoBooksFound(false);
+      return;
+    }
+
     setError(null);
 
     try {
@@ -78,6 +85,7 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         loading,
         loadingMore,
         error,
+        setError,
       }}
     >
       {children}

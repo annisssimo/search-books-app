@@ -3,11 +3,12 @@ import './index.css';
 import { useParams } from 'react-router-dom';
 
 import useBookDetails from '../../hooks/useBookDetails';
+import ErrorModal from '../ErrorModal';
 import Spinner from '../Spinner';
 
 const BookDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { book, loading, error } = useBookDetails(id);
+  const { book, loading, error, setError } = useBookDetails(id);
 
   const getImageLink = () => {
     if (!book || !book.volumeInfo || !book.volumeInfo.imageLinks) return;
@@ -24,10 +25,14 @@ const BookDetails: React.FC = () => {
     return tempElement.innerText;
   };
 
+  function handleCloseError(): void {
+    setError(null);
+  }
+
   return (
     <div className="book-details-page">
       {loading && <Spinner />}
-      {error && <div className="error-message">{error}</div>}
+      {error && <ErrorModal message={error} onClose={handleCloseError} />}
       {book && (
         <>
           <div className="book-details-image-container">
