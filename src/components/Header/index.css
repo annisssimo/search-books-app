@@ -11,3 +11,23 @@ header {
   color: white;
   text-align: center;
 }
+
+@media (max-width: 500px) {
+  header {
+    height: 200px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  header {
+    height: 140px;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+}

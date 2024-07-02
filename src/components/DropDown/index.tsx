@@ -30,6 +30,7 @@ const DropDown: React.FC<DropDownProps> = ({ category, setCategory, sort, setSor
         <select
           name="categories"
           id="categories-select"
+          className="selector"
           value={category}
           onChange={handleCategoryChange}
           aria-label="Select category"
@@ -42,6 +43,7 @@ const DropDown: React.FC<DropDownProps> = ({ category, setCategory, sort, setSor
         <select
           name="sort"
           id="sort-select"
+          className="selector"
           value={sort}
           onChange={handleSortChange}
           aria-label="Select sorting order"
