@@ -24,6 +24,8 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const handleInitialSearch = async (): Promise<void> => {
     setStartIndex(0);
     setSearchResults([]);
+    setTotalItems(0);
+    setNoBooksFound(false);
     setLoading(true);
     navigate('/');
     await handleSearch(0);
@@ -35,6 +37,8 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       setSearchResults([]);
       setTotalItems(0);
       setNoBooksFound(false);
+      setLoading(false);
+      setLoadingMore(false);
       return;
     }
 
@@ -42,19 +46,23 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     try {
       const data = await fetchBooks(query, category, sort, startIndex, MAX_RESULTS);
-      if (data.totalItems > 0) {
-        setSearchResults((prevResults) => [...prevResults, ...data.items]);
-        setTotalItems(data.totalItems);
-        setNoBooksFound(false);
-      } else {
-        if (startIndex === 0) {
-          setNoBooksFound(true);
-          setSearchResults([]);
-          setTotalItems(0);
+
+      if (data && Array.isArray(data.items)) {
+        if (data.totalItems > 0) {
+          setSearchResults((prevResults) => [...prevResults, ...data.items]);
+          setTotalItems(data.totalItems);
+          setNoBooksFound(false);
+        } else {
+          if (startIndex === 0) {
+            setNoBooksFound(true);
+            setSearchResults([]);
+            setTotalItems(0);
+          }
         }
       }
     } catch (error) {
       setError('Error fetching books');
+      console.error('Error in handleSearch:', error);
     } finally {
       setLoading(false);
       setLoadingMore(false);

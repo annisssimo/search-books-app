@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { MAX_RESULTS } from '../../constants/constants';
 import { useSearch } from '../../context/SearchContext';
 import { Book } from '../../types/book';
