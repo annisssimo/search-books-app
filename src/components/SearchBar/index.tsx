@@ -1,4 +1,4 @@
-import './SearchBar.css';
+import './index.css';
 
 import React, { ChangeEvent, KeyboardEvent } from 'react';
 import { FaSearch } from 'react-icons/fa';

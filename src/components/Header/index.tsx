@@ -1,10 +1,10 @@
-import './Header.css';
+import './index.css';
 
 import React from 'react';
 
 import { useSearch } from '../../context/SearchContext';
-import DropDown from '../DropDown/DropDown';
-import SearchBar from '../SearchBar/SearchBar';
+import DropDown from '../DropDown';
+import SearchBar from '../SearchBar';
 
 const Header: React.FC = () => {
   const { category, setCategory, sort, setSort, query, setQuery, handleInitialSearch } =

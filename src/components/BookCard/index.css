@@ -1,23 +1,25 @@
 .book-card {
-  overflow: hidden;
+  position: relative;
   width: 260px;
   margin: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 16px;
+  overflow: hidden;
   background-color: #eaeaea;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .book-image {
-  height: 200px;
+  position: relative;
   margin: 20px;
+  height: 200px;
   align-self: center;
 }
 
 p.category {
+  margin: 8px 0;
   font-weight: 200;
   text-decoration: underline;
   color: gray;
-  margin: 8px 0;
 }
 
 p.book-authors {

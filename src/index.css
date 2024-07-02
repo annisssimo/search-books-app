@@ -22,18 +22,9 @@ h1 {
 }
 
 .loading {
-  text-align: center;
   margin: 80px;
 }
 
-.error-message {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-  padding: 15px;
-  margin: 20px 80px;
-  border-radius: 5px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  text-align: center;
+.loading-more {
+  margin: -20px 0 40px 0;
 }

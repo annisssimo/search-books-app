@@ -1,0 +1,39 @@
+.dropdown {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 1.25rem;
+}
+
+.selector {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+
+@media (max-width: 500px) {
+  .dropdown {
+    gap: 10px;
+    font-size: 0.8rem;
+  }
+
+  .selector {
+    margin-left: 5px;
+    padding: 2px 5px;
+  }
+}
+
+@media (max-width: 360px) {
+  .dropdown {
+    gap: 10px;
+    font-size: 0.66rem;
+  }
+
+  .selector {
+    margin-left: 5px;
+    padding: 1px 2px;
+    font-size: 0.66rem;
+  }
+}

@@ -1,30 +1,14 @@
 import React, { createContext, useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { MAX_RESULTS } from '../constants/constants';
 import { fetchBooks } from '../services/bookService';
 import { Book } from '../types/book';
+import SearchContextProps from '../types/searchContextProps';
 
-// Определение интерфейса контекста
-interface SearchContextProps {
-  query: string;
-  setQuery: (query: string) => void;
-  category: string;
-  setCategory: (category: string) => void;
-  sort: string;
-  setSort: (sort: string) => void;
-  searchResults: Book[];
-  totalItems: number;
-  noBooksFound: boolean;
-  handleInitialSearch: () => Promise<void>;
-  loadMoreBooks: () => void;
-}
-
-// Создание контекста
 const SearchContext = createContext<SearchContextProps | undefined>(undefined);
 
-// Провайдер контекста, который обеспечивает доступ к данным через всё дерево компонентов
 export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Состояния и функции для управления поисковыми данными
   const [query, setQuery] = useState<string>('');
   const [category, setCategory] = useState<string>('all');
   const [sort, setSort] = useState<string>('relevance');
@@ -32,36 +16,64 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [startIndex, setStartIndex] = useState<number>(0);
   const [totalItems, setTotalItems] = useState<number>(0);
   const [noBooksFound, setNoBooksFound] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [loadingMore, setLoadingMore] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const handleInitialSearch = async (): Promise<void> => {
     setStartIndex(0);
     setSearchResults([]);
-    handleSearch(0);
+    setTotalItems(0);
+    setNoBooksFound(false);
+    setLoading(true);
+    navigate('/');
+    await handleSearch(0);
+    setLoading(false);
   };
 
   const handleSearch = async (startIndex: number): Promise<void> => {
+    if (!query.trim()) {
+      setSearchResults([]);
+      setTotalItems(0);
+      setNoBooksFound(false);
+      setLoading(false);
+      setLoadingMore(false);
+      return;
+    }
+
+    setError(null);
+
     try {
       const data = await fetchBooks(query, category, sort, startIndex, MAX_RESULTS);
 
-      if (data.totalItems > 0) {
-        setSearchResults((prevResults) => [...prevResults, ...data.items]);
-        setTotalItems(data.totalItems);
-        setNoBooksFound(false);
-      } else {
-        setNoBooksFound(true);
-        setSearchResults([]);
-        setTotalItems(0);
+      if (data && Array.isArray(data.items)) {
+        if (data.totalItems > 0) {
+          setSearchResults((prevResults) => [...prevResults, ...data.items]);
+          setTotalItems(data.totalItems);
+          setNoBooksFound(false);
+        } else {
+          if (startIndex === 0) {
+            setNoBooksFound(true);
+            setSearchResults([]);
+            setTotalItems(0);
+          }
+        }
       }
     } catch (error) {
-      console.error('Error fetching data:', error);
-      // TODO: Display error on UI
+      setError('Error fetching books');
+      console.error('Error in handleSearch:', error);
+    } finally {
+      setLoading(false);
+      setLoadingMore(false);
     }
   };
 
-  const loadMoreBooks = () => {
+  const loadMoreBooks = async () => {
     const newStartIndex = startIndex + MAX_RESULTS;
     setStartIndex(newStartIndex);
-    handleSearch(newStartIndex);
+    setLoadingMore(true);
+    await handleSearch(newStartIndex);
   };
 
   return (
@@ -78,6 +90,10 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         noBooksFound,
         handleInitialSearch,
         loadMoreBooks,
+        loading,
+        loadingMore,
+        error,
+        setError,
       }}
     >
       {children}

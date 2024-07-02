@@ -1,13 +1,21 @@
 import './App.css';
 
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import BookDetails from './components/BookDetails/BookDetails';
-import BookSearch from './components/BookSearch/BookSearch';
-import Header from './components/Header/Header';
+import BookDetails from './components/BookDetails';
+import BookSearch from './components/BookSearch';
+import ErrorModal from './components/ErrorModal';
+import Header from './components/Header';
 import { SearchProvider } from './context/SearchContext';
 
 function App() {
+  const [error, setError] = useState<string | null>(null);
+
+  const handleCloseError = () => {
+    setError(null);
+  };
+
   return (
     <div className="app">
       <SearchProvider>
@@ -15,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<BookSearch />} />
           <Route path="/book/:id" element={<BookDetails />} />
+          {error && <ErrorModal message={error} onClose={handleCloseError} />}
         </Routes>
       </SearchProvider>
     </div>

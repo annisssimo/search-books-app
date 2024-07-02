@@ -1,0 +1,33 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1em;
+  height: 240px;
+  background-image: url(/header-background.png);
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+}
+
+@media (max-width: 500px) {
+  header {
+    height: 200px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  header {
+    height: 140px;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+}
