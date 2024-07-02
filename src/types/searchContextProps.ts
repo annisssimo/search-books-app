@@ -12,4 +12,8 @@ export default interface SearchContextProps {
   noBooksFound: boolean;
   handleInitialSearch: () => Promise<void>;
   loadMoreBooks: () => void;
+  loading: boolean;
+  loadingMore: boolean;
+  error: string | null;
+  setError: (error: string | null) => void;
 }

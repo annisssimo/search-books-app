@@ -1,18 +1,56 @@
-import React from 'react';
-
 import { MAX_RESULTS } from '../../constants/constants';
 import { useSearch } from '../../context/SearchContext';
+import { Book } from '../../types/book';
 import BookCard from '../BookCard';
+import ErrorModal from '../ErrorModal';
+import Spinner from '../Spinner';
 
 const BookSearch: React.FC = () => {
-  const { searchResults, totalItems, noBooksFound, loadMoreBooks } = useSearch();
+  const {
+    searchResults,
+    totalItems,
+    noBooksFound,
+    loadMoreBooks,
+    loading,
+    loadingMore,
+    error,
+    setError,
+  } = useSearch();
+
+  const handleCloseError = () => {
+    setError(null);
+  };
+
+  const getUniqueBooks = (books: Book[]): Book[] => {
+    const uniqueBooks: Book[] = [];
+    const bookIds = new Set<string>();
+
+    books.forEach((book) => {
+      if (!bookIds.has(book.id)) {
+        uniqueBooks.push(book);
+        bookIds.add(book.id);
+      }
+    });
+
+    return uniqueBooks;
+  };
+
+  const uniqueSearchResults: Book[] = getUniqueBooks(searchResults);
 
   return (
     <div className="book-search">
-      {totalItems !== 0 && <div className="total-items">Found {totalItems} results</div>}
+      {loading && (
+        <div className="loading">
+          <Spinner />
+        </div>
+      )}
+      {error && <ErrorModal message={error} onClose={handleCloseError} />}
+      {totalItems !== 0 && !loading && !error && (
+        <div className="total-items">Found {totalItems} results</div>
+      )}
       {noBooksFound && <div className="total-items">No books found</div>}
       <div className="search-results">
-        {searchResults.map((book) => (
+        {uniqueSearchResults.map((book) => (
           <BookCard
             key={book.id}
             id={book.id}
@@ -32,12 +70,19 @@ const BookSearch: React.FC = () => {
         ))}
       </div>
       <div className="button-container">
-        {searchResults.length > 0 && searchResults.length % MAX_RESULTS === 0 && (
-          <button className="load-button" onClick={loadMoreBooks}>
-            Load more
-          </button>
-        )}
+        {uniqueSearchResults.length > 0 &&
+          uniqueSearchResults.length % MAX_RESULTS === 0 &&
+          !loadingMore && (
+            <button className="load-button" onClick={loadMoreBooks}>
+              Load more
+            </button>
+          )}
       </div>
+      {loadingMore && (
+        <div className="loading-more">
+          <Spinner />
+        </div>
+      )}
     </div>
   );
 };

@@ -21,3 +21,31 @@ input {
 #search-icon {
   color: gray;
 }
+
+@media (max-width: 500px) {
+  input {
+    font-size: 1rem;
+  }
+
+  .input-wrapper {
+    width: 240px;
+    height: 2rem;
+    padding: 0 5px;
+    background-color: white;
+    box-shadow: 0 0 8px #ddd;
+  }
+}
+
+@media (max-width: 360px) {
+  input {
+    font-size: 0.8rem;
+  }
+
+  .input-wrapper {
+    width: 166px;
+    height: 1.8rem;
+    padding: 0 5px;
+    background-color: white;
+    box-shadow: 0 0 8px #ddd;
+  }
+}

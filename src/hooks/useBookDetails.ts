@@ -29,7 +29,7 @@ const useBookDetails = (id: string | undefined) => {
     getBookDetails();
   }, [id]);
 
-  return { book, loading, error };
+  return { book, loading, error, setError };
 };
 
 export default useBookDetails;

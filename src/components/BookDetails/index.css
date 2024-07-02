@@ -1,6 +1,5 @@
 .book-details-page {
   display: flex;
-  align-items: center;
   justify-content: center;
   gap: 160px;
   padding: 80px 120px;
