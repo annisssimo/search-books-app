@@ -1,3 +1,5 @@
+@import '../../styles/variables.css';
+
 .book-details-page {
   display: flex;
   justify-content: center;
@@ -18,27 +20,59 @@
 }
 
 .book-details-title {
-  font-size: 2rem;
+  font-size: var(--font-size-large);
 }
 
 .book-details-authors {
   margin: 20px 0;
-  font-weight: 200;
+  font-weight: var(--font-weight-light);
   text-decoration: underline;
-  color: gray;
+  color: var(--font-color-gray);
 }
 
 .book-details-categories {
   padding-bottom: 40px;
-  font-weight: 300;
-  color: gray;
+  font-weight: var(--font-weight-medium);
+  color: var(--font-color-gray);
 }
 
 .book-details-description {
   padding: 20px;
-  border: 1px solid gray;
+  border: 1px solid var(--font-color-gray);
 }
 
 .book-info {
   flex: 1;
+}
+
+@media (max-width: 1000px) {
+  .book-details-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    padding: 40px 20px;
+  }
+
+  .book-details-image-container {
+    width: 200px;
+    height: 300px;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .book-details-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    padding: 40px 20px;
+  }
+
+  .book-details-image-container {
+    width: 200px;
+    height: 300px;
+    margin-right: 10px;
+  }
 }

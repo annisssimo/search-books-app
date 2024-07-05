@@ -9,15 +9,15 @@ import SearchContextProps from '../types/searchContextProps';
 const SearchContext = createContext<SearchContextProps | undefined>(undefined);
 
 export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [query, setQuery] = useState<string>('');
-  const [category, setCategory] = useState<string>('all');
-  const [sort, setSort] = useState<string>('relevance');
+  const [query, setQuery] = useState('');
+  const [category, setCategory] = useState('all');
+  const [sort, setSort] = useState('relevance');
   const [searchResults, setSearchResults] = useState<Book[]>([]);
-  const [startIndex, setStartIndex] = useState<number>(0);
-  const [totalItems, setTotalItems] = useState<number>(0);
-  const [noBooksFound, setNoBooksFound] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [loadingMore, setLoadingMore] = useState<boolean>(false);
+  const [startIndex, setStartIndex] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
+  const [noBooksFound, setNoBooksFound] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 

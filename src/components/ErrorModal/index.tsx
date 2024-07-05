@@ -2,7 +2,7 @@ import './index.css';
 
 import React from 'react';
 
-import errorIcon from './error-icon.svg';
+import errorIcon from '../../assets/error-icon.svg';
 import { ErrorModalProps } from './types';
 
 const ErrorModal: React.FC<ErrorModalProps> = ({ message, onClose }) => {

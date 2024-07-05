@@ -1,0 +1,18 @@
+:root {
+  --background-color: #eaeaea;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --font-color-gray: gray;
+  --font-weight-light: 200;
+  --font-weight-medium: 300;
+  --header-height-large: 240px;
+  --header-height-medium: 200px;
+  --header-height-small: 140px;
+  --font-size-large: 2rem;
+  --font-size-medium: 1.25rem;
+  --font-size-small: 0.8rem;
+  --font-size-xsmall: 0.66rem;
+  --spinner-color: #7a7a7a;
+  --error-color: #f44336;
+  --modal-background: rgba(0, 0, 0, 0.5);
+  --modal-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

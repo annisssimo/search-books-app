@@ -22,6 +22,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ query, setQuery, onSearch }) => {
         type="text"
         placeholder="Search for books"
         value={query}
+        className="input-search-field"
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
