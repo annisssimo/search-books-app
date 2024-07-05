@@ -1,10 +1,12 @@
+@import '../../styles/variables.css';
+
 header {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 1em;
-  height: 240px;
+  height: var(--header-height-large);
   background-image: url(/header-background.png);
   background-size: cover;
   background-position: center;
@@ -14,20 +16,20 @@ header {
 
 @media (max-width: 500px) {
   header {
-    height: 200px;
+    height: var(--header-height-medium);
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: var(--font-size-large);
   }
 }
 
 @media (max-width: 360px) {
   header {
-    height: 140px;
+    height: var(--header-height-small);
   }
 
   h1 {
-    font-size: 1.3rem;
+    font-size: var(--font-size-medium);
   }
 }

@@ -1,11 +1,13 @@
+@import '../../styles/variables.css';
+
 .book-card {
   position: relative;
   width: 260px;
   margin: 16px;
   padding: 16px;
   overflow: hidden;
-  background-color: #eaeaea;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--background-color);
+  box-shadow: var(--box-shadow);
 }
 
 .book-image {
@@ -17,12 +19,12 @@
 
 p.category {
   margin: 8px 0;
-  font-weight: 200;
+  font-weight: var(--font-weight-light);
   text-decoration: underline;
-  color: gray;
+  color: var(--font-color-gray);
 }
 
 p.book-authors {
-  font-weight: 200;
-  color: gray;
+  font-weight: var(--font-weight-light);
+  color: var(--font-color-gray);
 }

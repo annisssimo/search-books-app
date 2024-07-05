@@ -1,8 +1,10 @@
+@import '../../styles/variables.css';
+
 .dropdown {
   display: flex;
   align-items: center;
   gap: 20px;
-  font-size: 1.25rem;
+  font-size: var(--font-size-medium);
 }
 
 .selector {
@@ -16,7 +18,7 @@
 @media (max-width: 500px) {
   .dropdown {
     gap: 10px;
-    font-size: 0.8rem;
+    font-size: var(--font-size-small);
   }
 
   .selector {
@@ -28,12 +30,12 @@
 @media (max-width: 360px) {
   .dropdown {
     gap: 10px;
-    font-size: 0.66rem;
+    font-size: var(--font-size-xsmall);
   }
 
   .selector {
     margin-left: 5px;
     padding: 1px 2px;
-    font-size: 0.66rem;
+    font-size: var(--font-size-xsmall);
   }
 }
